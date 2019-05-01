@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post')
-// const cloudinaryStorage = require('../config/cloudinary')
-// const cloudinary = require('../config/cloudinary')
-// const mulder = require('../config/cloudinary')
 const parser = require('./../config/cloudinary')
 
 
@@ -23,7 +20,7 @@ router.post('/', parser.single("image") , (req, res, next)=>{
   const {title, description} = req.body;
   const newPost = Post.create({title, description, imageUrl})
   newPost.save()
-  .then(()=> res.redirect('/posts'))
+  .then(()=> res.redirect('/'))
   .catch((err)=> res.render('posts/new'))
 })
 
